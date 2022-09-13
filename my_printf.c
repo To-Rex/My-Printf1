@@ -9,6 +9,7 @@ int my_putchar(char c)
 }
 
 
+
 int my_puts (char *str) {
     int i = 0;
     while (str[i] != '\0') {
@@ -19,8 +20,7 @@ int my_puts (char *str) {
 }
 
 
-int my_putd(int nb)
-{
+int my_putd (int nb) {
     int i = 0;
     if (nb < 0) {
         my_putchar('-');
@@ -29,7 +29,8 @@ int my_putd(int nb)
     if (nb >= 10) {
         i += my_putd(nb / 10);
         i += my_putd(nb % 10);
-    } else {
+    }
+    else {
         my_putchar(nb + '0');
         i++;
     }
@@ -52,15 +53,17 @@ int my_puto (unsigned int nbr) {
     return (len + my_putchar(nbr % 8 + '0'));   
 }
 
-int my_putx (unsigned long int nbr) {
+// create my_putx function
+int my_putx (unsigned int nbr) {
     int len = 0;
     if (nbr > 15)
         len += my_putx(nbr / 16);
-    if (nbr%16 > 9 && nbr%16 < 16)
-        return (len + my_putchar(nbr%16-10 + 'A'));
+    if (nbr % 16 < 10)
+        return (len + my_putchar(nbr % 16 + '0'));
     else
-        return (len + my_putchar(nbr % 16  + '0'));   
+        return (len + my_putchar(nbr % 16 + 'a' - 10));
 }
+
 
 int my_printf(char * restrict format, ...) {
 
