@@ -2,28 +2,41 @@
 #include <unistd.h>
 #include <stdarg.h>
 
-int my_putchar (char c) {
+int my_putchar(char c)
+{
     write(1, &c, 1);
     return (1);
 }
 
-int my_puts(char *s) {
-    int len = 0;
-    while (*s)
-        len += my_putchar(*s++);
-    return (len);
+
+int my_puts (char *str) {
+    int i = 0;
+    while (str[i] != '\0') {
+        my_putchar(str[i]);
+        i++;
+    }
+    return (i);
 }
 
-int my_putd (int nbr) {
-    int len = 0;
-    if (nbr < 0) {
-        len += my_putchar('-');
-        nbr *= -1;
+
+int my_putd(int nb)
+{
+    int i = 0;
+    if (nb < 0) {
+        my_putchar('-');
+        nb = -nb;
     }
-    if (nbr > 9)
-        len += my_putd(nbr / 10);
-    return (len + my_putchar(nbr % 10 + '0'));    
+    if (nb >= 10) {
+        i += my_putd(nb / 10);
+        i += my_putd(nb % 10);
+    } else {
+        my_putchar(nb + '0');
+        i++;
+    }
+    return (i);
 }
+
+
 
 int my_putud (unsigned int nbr) {
     int len = 0;
@@ -116,14 +129,11 @@ int my_printf(char * restrict format, ...) {
 
 int main () {
     char * big = "big";
-    // unsigned int m = 123;
-    // my_printf("Hello %s World! %p\n", big, big);
-    // my_putx(346864);
-    // my_itoa(-243434);
-    // my_putd(0);
-
+    char * small = "small";
     my_printf("%d\n", my_printf("Hello %s %p\n", big, big));
     printf("%d\n", printf("Hello %s %p\n", big, big));
+    my_printf("%d\n", my_printf("Hello %s %p\n", small, small));
+    printf("%d\n", printf("Hello %s %p\n", small, small));
 
     return(0);
 }
