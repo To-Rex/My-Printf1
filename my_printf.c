@@ -130,13 +130,21 @@ int my_printf(char * restrict format, ...) {
 }
 
 
-int main () {
-    char * big = "big";
-    char * small = "small";
-    my_printf("%d\n", my_printf("Hello %s %p\n", big, big));
-    printf("%d\n", printf("Hello %s %p\n", big, big));
-    my_printf("%d\n", my_printf("Hello %s %p\n", small, small));
-    printf("%d\n", printf("Hello %s %p\n", small, small));
-
-    return(0);
+// little my_printf test
+int main() {
+    my_printf("Hello, World! %s %d %c %u %o %x %p\n", "test", 42, 'a', 42, 42, 42, 42);
+    return (0);
 }
+
+
+
+// int main () {
+//     char * big = "big";
+//     char * small = "small";
+//     // my_printf("%d\n", my_printf("Hello %s %p\n", big, big));
+//     printf("%d\n", printf("Hello %s %p\n", big, big));
+//     // my_printf("%d\n", my_printf("Hello %s %p\n", small, small));
+//     printf("%d\n", printf("Hello %s %p\n", small, small));
+
+//     return(0);
+// }
